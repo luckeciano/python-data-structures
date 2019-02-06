@@ -17,13 +17,14 @@
 * Python also includes a data type for sets. A set is an unordered collection with no duplicate elements. Basic uses include membership testing and eliminating duplicate entries. Set objects also support mathematical operations like union, intersection, difference, and symmetric difference.
 * There is *set comprehensions*.
 * [Operations and Complexity](https://wiki.python.org/moin/TimeComplexity)
+* [List of operations by Hackerrank exercise](https://www.hackerrank.com/challenges/symmetric-difference/problem)
 
 ## Dictionaries
 * A mapping object maps hashable values to arbitrary objects.
 * [Operations](https://docs.python.org/2/library/stdtypes.html#mapping-types-dict) and [Complexity](https://wiki.python.org/moin/TimeComplexity)
 
 
-# Collections
+#  Collections
 
 ## Counter
 * A counter is a container that stores elements as dictionary keys, and their counts are stored as dictionary values.
@@ -114,6 +115,88 @@ With namedtuples, you don’t have to use integer indices for accessing members 
     >>> print ordered_dictionary
     OrderedDict([('a', 1), ('b', 2), ('c', 3), ('d', 4), ('e', 5)])
     ```
+## deque
+
+* A deque is a double-ended queue. It can be used to add or remove elements from both ends. Deques support thread safe, memory efficient appends and pops from either side of the deque with approximately the same O(1)  performance in either direction.
+* [Operations](https://docs.python.org/2/library/collections.html#deque-objects) and [Recipes](https://docs.python.org/2.7/library/collections.html#deque-recipes)
+* Example usage:
+    ```sh
+    >>> from collections import deque
+    >>> d = deque()
+    >>> d.append(1)
+    >>> print d
+    deque([1])
+    >>> d.appendleft(2)
+    >>> print d
+    deque([2, 1])
+    >>> d.clear()
+    >>> print d
+    deque([])
+    >>> d.extend('1')
+    >>> print d
+    deque(['1'])
+    >>> d.extendleft('234')
+    >>> print d
+    deque(['4', '3', '2', '1'])
+    >>> d.count('1')
+    1
+    >>> d.pop()
+    '1'
+    >>> print d
+    deque(['4', '3', '2'])
+    >>> d.popleft()
+    '4'
+    >>> print d
+    deque(['3', '2'])
+    >>> d.extend('7896')
+    >>> print d
+    deque(['3', '2', '7', '8', '9', '6'])
+    >>> d.remove('2')
+    >>> print d
+    deque(['3', '7', '8', '9', '6'])
+    >>> d.reverse()
+    >>> print d
+    deque(['6', '9', '8', '7', '3'])
+    >>> d.rotate(3)
+    >>> print d
+    deque(['8', '7', '3', '6', '9'])
+    ```
+
+#  itertools
+
+## combinations
+
+* itertools.combinations(iterable, r) 
+* This tool returns the  length subsequences of elements from the input iterable.
+Combinations are emitted in lexicographic sorted order. So, if the input iterable is sorted, the combination tuples will be produced in sorted order.
+* Example usage:
+     ```sh
+    >>> from itertools import combinations
+    >>> 
+    >>> print list(combinations('12345',2))
+    [('1', '2'), ('1', '3'), ('1', '4'), ('1', '5'), ('2', '3'), ('2', '4'), ('2', '5'), ('3', '4'), ('3', '5'), ('4', '5')]
+    >>> 
+    >>> A = [1,1,3,3,3]
+    >>> print list(combinations(A,4))
+    [(1, 1, 3, 3), (1, 1, 3, 3), (1, 1, 3, 3), (1, 3, 3, 3), (1, 3, 3, 3)]
+    ```
+    
+## combinations_with_replacement
+* itertools.combinations_with_replacement(iterable, r) 
+* This tool returns  length subsequences of elements from the input iterable allowing individual elements to be repeated more than once.
+Combinations are emitted in lexicographic sorted order. So, if the input iterable is sorted, the combination tuples will be produced in sorted order.
+* Example usage: 
+    ```sh
+    >>> from itertools import combinations_with_replacement
+    >>> 
+    >>> print list(combinations_with_replacement('12345',2))
+    [('1', '1'), ('1', '2'), ('1', '3'), ('1', '4'), ('1', '5'), ('2', '2'), ('2', '3'), ('2', '4'), ('2', '5'), ('3', '3'), ('3', '4'), ('3', '5'), ('4', '4'), ('4', '5'), ('5', '5')]
+    >>> 
+    >>> A = [1,1,3,3,3]
+    >>> print list(combinations(A,2))
+    [(1, 1), (1, 3), (1, 3), (1, 3), (1, 3), (1, 3), (1, 3), (3, 3), (3, 3), (3, 3)]
+    ```
+
 
 # Credits
 
