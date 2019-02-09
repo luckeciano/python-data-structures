@@ -198,6 +198,226 @@ Combinations are emitted in lexicographic sorted order. So, if the input iterabl
     ```
 
 
+# numpy
+
+* initialize a numpy array from list
+    ```sh
+    import numpy
+
+    a = numpy.array([1,2,3,4,5])
+    print a[1]          #2
+    
+    b = numpy.array([1,2,3,4,5],float)
+    print b[1]          #2.0
+    ```
+    
+* shape and reshape
+
+    ```sh
+    import numpy
+
+    my__1D_array = numpy.array([1, 2, 3, 4, 5])
+    print my_1D_array.shape     #(5,) -> 5 rows and 0 columns
+    
+    my__2D_array = numpy.array([[1, 2],[3, 4],[6,5]])
+    print my_2D_array.shape     #(3, 2) -> 3 rows and 2 columns 
+    ```
+
+    ```sh
+    import numpy
+
+    my_array = numpy.array([1,2,3,4,5,6])
+    print numpy.reshape(my_array,(3,2))
+    
+
+    #Output
+    [[1 2]
+    [3 4]
+    [5 6]]
+    ```
+
+* transpose
+    ```sh
+    import numpy
+    
+    my_array = numpy.array([[1,2,3],
+                            [4,5,6]])
+    print numpy.transpose(my_array)
+    
+    #Output
+    [[1 4]
+     [2 5]
+     [3 6]]
+     ```
+
+* flatten
+    ```sh
+    import numpy
+
+    my_array = numpy.array([[1,2,3],
+                            [4,5,6]])
+    print my_array.flatten()
+    
+    #Output
+    [1 2 3 4 5 6]
+    ```
+    
+* concatenate
+    ```sh
+    import numpy
+
+    array_1 = numpy.array([1,2,3])
+    array_2 = numpy.array([4,5,6])
+    array_3 = numpy.array([7,8,9])
+    
+    print numpy.concatenate((array_1, array_2, array_3))    
+    
+    #Output
+    [1 2 3 4 5 6 7 8 9]
+    ```
+   
+   ```sh 
+    import numpy
+
+    array_1 = numpy.array([[1,2,3],[0,0,0]])
+    array_2 = numpy.array([[0,0,0],[7,8,9]])
+    
+    print numpy.concatenate((array_1, array_2), axis = 1)   
+    
+    #Output
+    [[1 2 3 0 0 0]
+     [0 0 0 7 8 9]]  
+     ```
+
+* zeros
+    ```sh
+    import numpy
+
+    print numpy.zeros((1,2))                    #Default type is float
+    #Output : [[ 0.  0.]] 
+    
+    print numpy.zeros((1,2), dtype = numpy.int) #Type changes to int
+    #Output : [[0 0]]
+    ```
+    
+* ones
+
+    ```sh
+    import numpy
+
+    print numpy.ones((1,2))                    #Default type is float
+    #Output : [[ 1.  1.]] 
+    
+    print numpy.ones((1,2), dtype = numpy.int) #Type changes to int
+    #Output : [[1 1]]   
+    ```
+* identity
+    * The identity tool returns an identity array. An identity array is a square matrix with all the main diagonal elements as 1 and the rest as 0. The default type of elements is float.
+    ```sh
+    import numpy
+    print numpy.identity(3) #3 is for  dimension 3 X 3
+    
+    #Output
+    [[ 1.  0.  0.]
+     [ 0.  1.  0.]
+     [ 0.  0.  1.]]
+     ```
+     
+* eye
+    * The eye tool returns a 2-D array with 1's as the diagonal and 0's elsewhere. The diagonal can be main, upper or lower depending on the optional parameter k. A positive k is for the upper diagonal, a negative  k is for the lower, and a   0 k (default) is for the main diagonal.
+    ```sh
+    import numpy
+    print numpy.eye(8, 7, k = 1)    # 8 X 7 Dimensional array with first upper diagonal 1.
+    
+    #Output
+    [[ 0.  1.  0.  0.  0.  0.  0.]
+     [ 0.  0.  1.  0.  0.  0.  0.]
+     [ 0.  0.  0.  1.  0.  0.  0.]
+     [ 0.  0.  0.  0.  1.  0.  0.]
+     [ 0.  0.  0.  0.  0.  1.  0.]
+     [ 0.  0.  0.  0.  0.  0.  1.]
+     [ 0.  0.  0.  0.  0.  0.  0.]
+     [ 0.  0.  0.  0.  0.  0.  0.]]
+    
+    print numpy.eye(8, 7, k = -2)   # 8 X 7 Dimensional array with second lower diagonal 1.
+    ```
+* mathematics
+    ```sh
+    import numpy
+
+    a = numpy.array([1,2,3,4], float)
+    b = numpy.array([5,6,7,8], float)
+    
+    print a + b                     #[  6.   8.  10.  12.]
+    print numpy.add(a, b)           #[  6.   8.  10.  12.]
+    
+    print a - b                     #[-4. -4. -4. -4.]
+    print numpy.subtract(a, b)      #[-4. -4. -4. -4.]
+    
+    print a * b                     #[  5.  12.  21.  32.]
+    print numpy.multiply(a, b)      #[  5.  12.  21.  32.]
+    
+    print a / b                     #[ 0.2         0.33333333  0.42857143  0.5       ]
+    print numpy.divide(a, b)        #[ 0.2         0.33333333  0.42857143  0.5       ]
+    
+    print a % b                     #[ 1.  2.  3.  4.]
+    print numpy.mod(a, b)           #[ 1.  2.  3.  4.]
+    
+    print a**b                      #[  1.00000000e+00   6.40000000e+01   2.18700000e+03   6.55360000e+04]
+    print numpy.power(a, b)         #[  1.00000000e+00   6.40000000e+01   2.18700000e+03   6.55360000e+04]
+    ```
+    
+* floor, ceil, rint
+
+    * floor: The tool floor returns the floor of the input element-wise. 
+    ```sh
+    import numpy
+
+    my_array = numpy.array([1.1, 2.2, 3.3, 4.4, 5.5, 6.6, 7.7, 8.8, 9.9])
+    print numpy.floor(my_array)         #[ 1.  2.  3.  4.  5.  6.  7.  8.  9.]
+    ```
+    
+    * ceil: The tool ceil returns the ceiling of the input element-wise. 
+    ```sh
+    import numpy
+
+    my_array = numpy.array([1.1, 2.2, 3.3, 4.4, 5.5, 6.6, 7.7, 8.8, 9.9])
+    print numpy.ceil(my_array)          #[  2.   3.   4.   5.   6.   7.   8.   9.  10.]
+    ```
+    
+    * rint: The rint tool rounds to the nearest integer of input element-wise.
+    ```sh
+    import numpy
+
+    my_array = numpy.array([1.1, 2.2, 3.3, 4.4, 5.5, 6.6, 7.7, 8.8, 9.9])
+    print numpy.rint(my_array)          #[  1.   2.   3.   4.   6.   7.   8.   9.  10.]
+    ```
+* sum, prod
+    * sum: The sum tool returns the sum of array elements over a given axis.
+    ```sh
+    import numpy
+
+    my_array = numpy.array([ [1, 2], [3, 4] ])
+    
+    print numpy.sum(my_array, axis = 0)         #Output : [4 6]
+    print numpy.sum(my_array, axis = 1)         #Output : [3 7]
+    print numpy.sum(my_array, axis = None)      #Output : 10
+    print numpy.sum(my_array)                   #Output : 10
+    ```
+    
+    * prod: The prod tool returns the product of array elements over a given axis.
+    ```sh
+    import numpy
+
+    my_array = numpy.array([ [1, 2], [3, 4] ])
+    
+    print numpy.prod(my_array, axis = 0)            #Output : [3 8]
+    print numpy.prod(my_array, axis = 1)            #Output : [ 2 12]
+    print numpy.prod(my_array, axis = None)         #Output : 24
+    print numpy.prod(my_array)                      #Output : 24
+    ```
+
+    
 # Credits
 
 All the credits for HackerRank platform! :)
